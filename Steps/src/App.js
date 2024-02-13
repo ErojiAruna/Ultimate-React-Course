@@ -6,18 +6,30 @@ const messages = [
   'Invest your new income 🤑',
 ];
 
-function App() {
+export default function App() {
+  return (
+    <div>
+      <Steps />
+      <Steps />
+    </div>
+  );
+}
+
+function Steps() {
   const [step, setStep] = useState(1);
   const [isOpen, setIsOpen] = useState(true);
 
   //const [test, setTest] = useState({ name: 'Aruna' });
 
   function handlePrevious() {
-    if (step > 1) setStep(step - 1);
+    if (step > 1) setStep((s) => s - 1);
   }
 
   function handleNext() {
-    if (step < 3) setStep(step + 1);
+    if (step < 3) {
+      setStep((s) => s + 1);
+      //setStep((s) => s + 1);
+    }
 
     // BAD PRACTICE
     //test.name = 'Sony';
@@ -25,8 +37,8 @@ function App() {
   }
 
   return (
-    <>
-      <button className="close" onClick={() => setIsOpen(!isOpen)}>
+    <div>
+      <button className="close" onClick={() => setIsOpen((is) => !is)}>
         &times;
       </button>
       {isOpen && (
@@ -58,8 +70,6 @@ function App() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
-
-export default App;
